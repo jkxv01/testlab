@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #282c34;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            border-bottom: 2px solid #e91e63;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+        }
+
+        header nav {
+            display: flex; /* Для рівномірного розташування посилань */
+        }
+
+        header nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 4px;
+            transition: background-color 0.3s; /* Додаємо плавний перехід */
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.1); /* Додаємо фоновий колір на наведення */
+        }
+
+        .login-btn {
+            padding: 10px 20px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #d81b60;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 300px;
+            flex: 1;
+            min-width: 280px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            transition: transform 0.3s, box-shadow 0.3s; /* Додаємо плавний перехід */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px); /* Ефект підйому при наведенні */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Збільшуємо тінь при наведенні */
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card h2 {
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .product-card p {
+            padding: 0 15px;
+            font-size: 16px;
+            color: #555;
+            flex-grow: 1; 
+        }
+
+        .product-card .price {
+            padding: 15px;
+            font-size: 18px;
+            color: #e91e63;
+            font-weight: bold;
+            border-top: 1px solid #ddd;
+        }
+
+        .product-card button {
+            width: 100%;
+            padding: 15px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .product-card button:hover {
+            background-color: #d81b60;
+        }
+
+        /* Мобільне меню */
+        @media (max-width: 768px) {
+            header nav {
+                display: none; 
+            }
+
+            header .mobile-menu-btn {
+                display: block; /* Показуємо кнопку меню тільки для мобільних */
+                background-color: #e91e63;
+                color: white;
+                border: none;
+                padding: 10px;
+                font-size: 18px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .mobile-menu {
+                display: none;
+                position: absolute;
+                background-color: #282c34;
+                top: 70px;
+                right: 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .mobile-menu a {
+                display: block;
+                padding: 10px;
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+            .mobile-menu a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @media (max-width: 960px) {
+            .container {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .product-card {
+                max-width: 45%; 
+                margin: 10px;
+            }
+
+            .product-card {
+                max-width: 100%; 
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://img.freepik.com/premium-vector/kpop-icon-banner_620118-5.jpg?w=740" alt="K-pop Logo">
+        
+        <nav>
+            <a href="#home">Головна</a>
+            <a href="#concerts">Концерти</a>
+            <a href="#about">Про нас</a>
+            <a href="#contact">Контакти</a>
+        </nav>
+
+        <button class="login-btn">Увійти</button>
+        
+        <button class="mobile-menu-btn" onclick="toggleMenu()" style="display: none;">Меню</button> <!-- Кнопка за замовчуванням прихована -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home">Головна</a>
+            <a href="#concerts">Концерти</a>
+            <a href="#about">Про нас</a>
+            <a href="#contact">Контакти</a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Квитки на концерти K-pop груп</h1>
+        <div class="container">
+            <article class="product-card">
+                <img src="image1.jpg" alt="Концерт BTS">
+                <h2>BTS - World Tour</h2>
+                <p>Приєднуйтесь до грандіозного світового туру BTS! Не пропустіть можливість побачити своїх улюблених артистів у живому виконанні.</p>
+                <div class="price">15 000 грн</div>
+                <button>Купити квиток</button>
+            </article>
+
+            <article class="product-card">
+                <img src="image2.webp" alt="Концерт Blackpink">
+                <h2>Blackpink - In Your Area</h2>
+                <p>Вибухові виступи Blackpink повертаються! Цей тур буде незабутнім шоу з енергією та стилем.</p>
+                <div class="price">10 000 грн</div>
+                <button>Купити квиток</button>
+            </article>
+
+            <article class="product-card">
+                <img src="image3.webp" alt="Концерт EXO">
+                <h2>EXO - The ElyXion</h2>
+                <p>EXO вражає своїми виступами та енергією. Дивовижні спецефекти та емоційні моменти на кожному шоу.</p>
+                <div class="price">12 000 грн</div>
+                <button>Купити квиток</button>
+            </article>
+
+            <article class="product-card">
+                <img src="image4.jpg"Концерт TWICE">
+                <h2>TWICE - Lights World Tour</h2>
+                <p>Яскраве та неймовірне шоу від TWICE! Приєднуйтесь до їхнього світового туру, повного світла та магії.</p>
+                <div class="price">9 000 грн</div>
+                <button>Купити квиток</button>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const button = document.querySelector('.mobile-menu-btn');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                button.innerText = 'Меню'; 
+            } else {
+                menu.style.display = 'block';
+                button.innerText = 'Закрити'; 
+            }
+        }
+
+        
+        window.addEventListener('resize', function() {
+            const button = document.querySelector('.mobile-menu-btn');
+            if (window.innerWidth <= 768) {
+                button.style.display = 'block'; 
+            } else {
+                button.style.display = 'none'; 
+                document.getElementById('mobileMenu').style.display = 'none'; 
+            }
+        });
+
+     
+        window.dispatchEvent(new Event('resize'));
+    </script>
+
+</body>
+</html>
